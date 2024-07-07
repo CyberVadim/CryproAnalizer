@@ -1,3 +1,6 @@
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class CaesarCipher {
 
 
@@ -12,8 +15,31 @@ public class CaesarCipher {
         System.out.println("Дешифрованный текст: " + decryptText);
     }
 
+    public static class Validator {
+        public boolean isValidKey(int key) {
+            // Проверка валидности ключа и существования алфавита
+            if (key != 0 && key > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public boolean isFileExists(String filePath) {
+            // Проверка существования файла, но в рамках проверки, мы проверяем текст
+            if (Files.exists(Path.of(filePath))) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     public static String encryptCaesar(String text, int shift) {
         StringBuilder cipherText = new StringBuilder();
+        Validator validator = new Validator();
+
+        validator.isFileExists(text);
+        validator.isValidKey(shift);
 
         for (char c : text.toCharArray()) {
             if (Character.isLetter(c)) {
