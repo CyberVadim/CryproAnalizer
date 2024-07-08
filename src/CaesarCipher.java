@@ -6,9 +6,9 @@ public class CaesarCipher {
 
     public static void main(String[] args) {
         String plainText = "Привет, мир!"; // Пример открытого текста
-        int shift = 3; // Смещение для шифрования
-        String encryptText = encryptCaesar(plainText, shift);
-        String decryptText = decryptCaesar(encryptText, shift);
+        int key = 3; // Ключ для шифрования
+        String encryptText = encryptCaesar(plainText, key);
+        String decryptText = decryptCaesar(encryptText, key);
 
         System.out.println("Открытый текст: " + plainText);
         System.out.println("Зашифрованный текст: " + encryptText);
@@ -34,16 +34,16 @@ public class CaesarCipher {
         }
     }
 
-    public static String encryptCaesar(String text, int shift) {
+    public static String encryptCaesar(String text, int key) {
         StringBuilder cipherText = new StringBuilder();
         Validator validator = new Validator();
 
         validator.isFileExists(text);
-        validator.isValidKey(shift);
+        validator.isValidKey(key);
 
         for (char c : text.toCharArray()) {
             if (Character.isLetter(c)) {
-                char encryptedChar = (char) ((c % 'я' + shift) % 'я');
+                char encryptedChar = (char) ((c % 'я' + key) % 'я');
                 cipherText.append(encryptedChar);
             } else {
                 cipherText.append(c);
@@ -56,8 +56,8 @@ public class CaesarCipher {
         return cipherText.toString();
     }
 
-    public static String decryptCaesar(String cipherText, int shift) {
-        return encryptCaesar(cipherText, -shift);
+    public static String decryptCaesar(String cipherText, int key) {
+        return encryptCaesar(cipherText, -key);
     }
 }
 
