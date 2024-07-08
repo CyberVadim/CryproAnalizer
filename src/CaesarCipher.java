@@ -17,7 +17,7 @@ public class CaesarCipher {
 
     public static class Validator {
         public boolean isValidKey(int key) {
-            // Проверка валидности ключа и существования алфавита
+            // Проверка валидности ключа
             if (key != 0 && key > 0) {
                 return true;
             } else {
