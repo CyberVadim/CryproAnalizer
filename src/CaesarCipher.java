@@ -7,6 +7,7 @@ public class CaesarCipher {
     public static void main(String[] args) {
         String plainText = "Привет, мир!"; // Пример открытого текста
         int key = 3; // Ключ для шифрования
+
         String encryptText = encryptCaesar(plainText, key);
         String decryptText = decryptCaesar(encryptText, key);
 
